@@ -88,7 +88,7 @@ export const Contact = () => {
 
   return (
     <section id="contact" ref={ref} className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4">
         <div
           className={`transition-all duration-1000 ${
             isVisible ? "animate-fade-in" : "opacity-0 translate-y-8"

@@ -7,7 +7,7 @@ export const About = () => {
   const { ref, isVisible } = useScrollAnimation()
 
   return (
-    <section id="about" ref={ref} className="py-20 bg-background">
+    <section id="about" ref={ref} className="py-20 bg-background max-w-7xl mx-auto">
       <div className="container mx-auto px-4">
         <div 
           className={`transition-all duration-1000 ${

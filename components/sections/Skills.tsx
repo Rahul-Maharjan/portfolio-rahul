@@ -15,9 +15,9 @@ export const Skills = () => {
     <section
       id="skills"
       ref={ref}
-      className="py-20 bg-secondary/30"
+      className="py-20 bg-secondary/30 "
     >
-      <div className="container mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4">
         <div
           className={`transition-all duration-1000 ${
             isVisible ? "animate-fade-in" : "opacity-0 translate-y-8"

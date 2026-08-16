@@ -1,11 +1,11 @@
 'use client'
 
+import { useState } from "react";
 import { ExternalLink,ArrowDown as Github, Code2, Palette } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { useProjects } from "@/hooks/use-projects";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -14,6 +14,21 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+
+const ProjectImage = ({ src }: { src?: string | null }) => {
+  const [error, setError] = useState(false);
+  const imageSrc = src && !error ? src : "/placeholder.svg";
+
+  return (
+    <img
+      src={imageSrc}
+      alt="Project preview"
+      onError={() => setError(true)}
+      loading="lazy"
+      className="h-48 w-full object-cover"
+    />
+  );
+};
 
 export const Projects = () => {
   const { ref, isVisible } = useScrollAnimation();
@@ -27,7 +42,7 @@ export const Projects = () => {
   );
 
   return (
-    <section id="projects" ref={ref} className="py-20 bg-background">
+    <section id="projects" ref={ref} className="py-20 bg-background max-w-7xl mx-auto">
       <div className="container mx-auto px-4">
         <div
           className={`transition-all duration-1000 ${
@@ -67,14 +82,7 @@ export const Projects = () => {
                     }`}
                   >
                     <div className="relative overflow-hidden rounded-t-lg">
-                      <div className="h-48 bg-gradient-primary/10 flex items-center justify-center">
-                        <div className="text-center">
-                          <div className="text-6xl mb-2">🚀</div>
-                          <p className="text-muted-foreground">
-                            Project Preview
-                          </p>
-                        </div>
-                      </div>
+                      <ProjectImage src={project.image} />
                       <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
                         <Button size="sm" variant="secondary" asChild>
                           <a
@@ -129,14 +137,7 @@ export const Projects = () => {
                     }`}
                   >
                     <div className="relative overflow-hidden rounded-t-lg">
-                      <div className="h-48 bg-gradient-primary/10 flex items-center justify-center">
-                        <div className="text-center">
-                          <div className="text-6xl mb-2">🎨</div>
-                          <p className="text-muted-foreground">
-                            Design Preview
-                          </p>
-                        </div>
-                      </div>
+                      <ProjectImage src={project.image} />
                       <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
                         <Button size="sm" variant="secondary" asChild>
                           <a
