@@ -1,74 +1,13 @@
 'use client'
 
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
+import { useExperiences } from "@/hooks/use-experiences"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
-const experiences = [
-  {
-    "title": "Frontend Developer & UI/UX Designer",
-    "company": "Core Dreams Innovations",
-    "period": "Dec, 2024 - Jul, 2025",
-    "description": "Designed and developed responsive web interfaces, improved UI/UX for limousine dispatch systems, and contributed to client-branded solutions.",
-    "technologies": ["HTML", "CSS", "Tailwind", "React"],
-    "achievements": [
-      "Created user flows, wireframes, and prototypes for dispatch apps",
-      "Improved UI/UX of Web Booker, Passenger App, and Chauffeur App",
-      "Delivered user-friendly, client-branded solutions"
-    ]
-  },
-  {
-    "title": "UI/UX Designer",
-    "company": "New Equilibria",
-    "period": "Oct, 2024 - Feb, 2025",
-    "description": "Optimized user journeys and designed an intuitive shopping app interface to improve engagement and conversions.",
-    "technologies": ["Figma", "Wireframing", "Prototyping"],
-    "achievements": [
-      "Enhanced navigation and user flow",
-      "Collaborated cross-functionally to align design with business goals",
-      "Improved customer experience for e-commerce"
-    ]
-  },
-  {
-    "title": "UI/UX Intern",
-    "company": "Treeleaf Technologies",
-    "period": "Apr, 2024 - Aug, 2024",
-    "description": "Contributed to 5+ projects, improved user workflows and interfaces, and enhanced usability through prototyping.",
-    "technologies": ["Figma", "Wireframing", "Prototyping"],
-    "achievements": [
-      "Improved user workflows by 30%",
-      "Delivered user-centric designs",
-      "Collaborated across teams to meet project goals"
-    ]
-  },
-  {
-    "title": "UI/UX Designer Intern",
-    "company": "KWS Techzone",
-    "period": "Jan, 2024 - Apr, 2024",
-    "description": "Designed website interfaces and implemented responsive frontend development using Tailwind CSS.",
-    "technologies": ["HTML", "CSS", "Tailwind", "Figma"],
-    "achievements": [
-      "Enhanced platform’s user experience and visual appeal",
-      "Contributed to frontend development and styling",
-      "Improved responsiveness across devices"
-    ]
-  },
-  {
-    "title": "Admin",
-    "company": "Lalit Academy",
-    "period": "Jan, 2021 - Jan, 2023",
-    "description": "Handled administrative tasks and coordination at Lalit Academy.",
-    "technologies": [],
-    "achievements": [
-      "Provided support in daily operations",
-      "Maintained organizational efficiency",
-      "Assisted in academic administration"
-    ]
-  }  
-]
-
 export const Experience = () => {
   const { ref, isVisible } = useScrollAnimation()
+  const { data: experiences = [] } = useExperiences()
 
   return (
     <section id="experience" ref={ref} className="py-20 bg-secondary/30">

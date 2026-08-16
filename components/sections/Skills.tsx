@@ -1,58 +1,15 @@
 'use client'
 
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { useSkills } from "@/hooks/use-skills";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-const skillCategories = [
-  {
-    title: "Frontend",
-    icon: "🎨",
-    skills: [
-      { name: "React", level: 95 },
-      { name: "TypeScript", level: 90 },
-      { name: "Next.js", level: 85 },
-      { name: "Tailwind CSS", level: 95 },
-      { name: "Sass/SCSS", level: 90 },
-    ],
-  },
-  {
-    title: "UI/UX Design",
-    icon: "✒️",
-    skills: [
-      { name: "Figma", level: 90 },
-      { name: "Wireframe", level: 85 },
-      { name: "Prototype", level: 88 },
-      { name: "Mood board", level: 75 },
-      { name: "Design System", level: 92 },
-    ],
-  },
-  // {
-  //   title: "Database",
-  //   icon: "🗄️",
-  //   skills: [
-  //     { name: "MongoDB", level: 88 },
-  //     { name: "PostgreSQL", level: 85 },
-  //     { name: "MySQL", level: 80 },
-  //     { name: "Redis", level: 75 },
-  //     { name: "Firebase", level: 82 },
-  //     { name: "Supabase", level: 78 }
-  //   ]
-  // },
-  {
-    title: "Tools & Others",
-    icon: "🛠️",
-    skills: [
-      { name: "Git", level: 95 },
-      { name: "AWS", level: 75 },
-      { name: "Vercel", level: 90 },
-      { name: "Figma", level: 85 },
-    ],
-  },
-];
-
 export const Skills = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const { data } = useSkills();
+  const skillCategories = data?.categories ?? [];
+  const otherTechnologies = data?.otherTechnologies ?? [];
 
   return (
     <section
@@ -129,27 +86,9 @@ export const Skills = () => {
               Other Technologies I Work With
             </h3>
             <div className="flex flex-wrap justify-center gap-3">
-              {[
-                "JavaScript",
-                "HTML5",
-                "CSS3",
-                "Webpack",
-                "Vite",
-                "npm",
-                "Yarn",
-                "ESLint",
-                "Prettier",
-                "Storybook",
-                "Cypress",
-                "Playwright",
-                "Jenkins",
-                "GitHub Actions",
-                "Linux",
-                "Nginx",
-                "Cloudflare",
-              ].map((tech, index) => (
+              {otherTechnologies.map((tech, index) => (
                 <Badge
-                  key={index}
+                  key={tech.id}
                   variant="secondary"
                   className={`transition-all duration-300 hover:scale-105 hover:bg-primary hover:text-primary-foreground ${
                     isVisible
@@ -157,7 +96,7 @@ export const Skills = () => {
                       : "opacity-0 scale-75"
                   }`}
                 >
-                  {tech}
+                  {tech.name}
                 </Badge>
               ))}
             </div>

@@ -1,12 +1,14 @@
 'use client'
 
-import { ArrowDown,ArrowDown as Github,ArrowDown as Linkedin, Mail } from "lucide-react"
+import { ArrowDown,ArrowDown as Github,ArrowDown as Linkedin, Mail, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
+import { useProfile } from "@/hooks/use-profile"
 import { useEffect, useState } from "react"
 
 export const Hero = () => {
   const { ref, isVisible } = useScrollAnimation()
+  const { data: profile } = useProfile()
 
   // Typewriter animation for Developer/Designer
   const words = ["Developer", "Designer"];
@@ -77,11 +79,23 @@ export const Hero = () => {
             >
               Get In Touch
             </Button>
+            {profile?.cvUrl && (
+              <Button 
+                variant="outline" 
+                size="lg"
+                asChild
+              >
+                <a href={profile.cvUrl} target="_blank" rel="noopener noreferrer">
+                  <Download className="h-4 w-4 mr-2" />
+                  Download CV
+                </a>
+              </Button>
+            )}
           </div>
 
           <div className="flex items-center justify-center space-x-6">
             <a 
-              href="https://github.com/Rahul-Maharjan" 
+              href={profile?.githubUrl ?? ""}
               target="_blank" 
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors duration-200 hover:scale-110 transform"
@@ -89,7 +103,7 @@ export const Hero = () => {
               <Github className="h-6 w-6" />
             </a>
             <a 
-              href="https://www.linkedin.com/in/rahul-maharjan-a57256207/" 
+              href={profile?.linkedinUrl ?? ""}
               target="_blank" 
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors duration-200 hover:scale-110 transform"
@@ -97,7 +111,7 @@ export const Hero = () => {
               <Linkedin className="h-6 w-6" />
             </a>
             <a 
-              href="mailto:rahulmaharjan252@gmail.com"
+              href={`mailto:${profile?.email ?? ""}`}
               className="text-muted-foreground hover:text-primary transition-colors duration-200 hover:scale-110 transform"
             >
               <Mail className="h-6 w-6" />

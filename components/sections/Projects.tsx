@@ -2,6 +2,7 @@
 
 import { ExternalLink,ArrowDown as Github, Code2, Palette } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { useProjects } from "@/hooks/use-projects";
 import {
   Card,
   CardContent,
@@ -14,73 +15,16 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
-const designProjects = [
-  {
-    title: "Portfolio Website",
-    description:
-      "Responsive portfolio website with modern design and smooth animations.",
-    image: "/api/placeholder/400/250",
-    technologies: ["Next.js", "Framer Motion", "Tailwind CSS", "Vercel"],
-    github: "https://github.com",
-    demo: "https://demo.com",
-    featured: true,
-  },
-  {
-    title: "UI Kit",
-    description: "Reusable UI kit for rapid prototyping and design systems.",
-    image: "/api/placeholder/400/250",
-    technologies: ["Figma", "React", "Tailwind CSS"],
-    github: "https://github.com",
-    demo: "https://demo.com",
-    featured: false,
-  },
-];
-
-const devProjects = [
-  {
-    title: "Royal Home Hotel",
-    description:
-      "Hotel booking website with room reservations, booking management, and modern UI design.",
-    image: "/api/placeholder/400/250",
-    technologies: ["React", "JavaScript", "CSS3", "Vercel"],
-    github: "https://github.com/Rahul-Maharjan",
-    demo: "https://royal-home-xdigisoft-pied.vercel.app/",
-    featured: true,
-  },
-  {
-    title: "Mini Cart E-commerce",
-    description:
-      "Full-stack e-commerce website with product catalog, shopping cart, and user authentication.",
-    image: "/api/placeholder/400/250",
-    technologies: ["React", "Node.js", "Express", "MongoDB"],
-    github: "https://github.com/Rahul-Maharjan",
-    demo: "https://mini-cart-5tf1.vercel.app/",
-    featured: true,
-  },
-  {
-    title: "RentX Car Rental",
-    description:
-      "Car rental service website with vehicle listings, booking system, and responsive design.",
-    image: "/api/placeholder/400/250",
-    technologies: ["HTML5", "CSS3", "JavaScript", "GitHub Pages"],
-    github: "https://github.com/Rahul-Maharjan/RentX",
-    demo: "https://rahul-maharjan.github.io/RentX/",
-    featured: false,
-  },
-  {
-    title: "Spices Food Delivery",
-    description:
-      "Hotel food delivery website with menu display, ordering system, and modern interface.",
-    image: "/api/placeholder/400/250",
-    technologies: ["HTML5", "CSS3", "JavaScript", "GitHub Pages"],
-    github: "https://github.com/Rahul-Maharjan/Spices",
-    demo: "https://rahul-maharjan.github.io/Spices/",
-    featured: false,
-  },
-];
-
 export const Projects = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const { data: projects = [] } = useProjects();
+
+  const devProjects = projects.filter(
+    (project) => project.category === "development",
+  );
+  const designProjects = projects.filter(
+    (project) => project.category === "design",
+  );
 
   return (
     <section id="projects" ref={ref} className="py-20 bg-background">
