@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { useProfile } from "@/hooks/use-profile";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,6 +14,7 @@ import emailjs from "@emailjs/browser";
 
 export const Contact = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const { data: profile } = useProfile();
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
@@ -23,11 +25,10 @@ export const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
-  // Initialize EmailJS
+  // Initialize EmailJS if keys are configured
   useEffect(() => {
-    emailjs.init(
-      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY",
-    );
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    if (publicKey) emailjs.init(publicKey);
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -35,25 +36,34 @@ export const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      if (!formRef.current) return;
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-      const result = await emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID",
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID",
-        formRef.current,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY",
-      );
+      if (!response.ok) throw new Error("Failed to save message");
 
-      if (result.status === 200) {
-        toast({
-          title: "Message sent!",
-          description: "Thanks for reaching out. I'll get back to you soon.",
-        });
+      const emailConfigured = !!process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+      if (emailConfigured) {
+        const emailResult = await emailjs.sendForm(
+          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID",
+          process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID",
+          formRef.current!,
+          process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY",
+        );
 
-        setFormData({ name: "", email: "", subject: "", message: "" });
-      } else {
-        throw new Error("Failed to send email");
+        if (emailResult.status !== 200) {
+          throw new Error("Failed to send email");
+        }
       }
+
+      toast({
+        title: "Message sent!",
+        description: "Thanks for reaching out. I'll get back to you soon.",
+      });
+
+      setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
       console.error("Failed to send message:", error);
       toast({
@@ -119,19 +129,19 @@ export const Contact = () => {
                   {
                     icon: Mail,
                     label: "Email",
-                    value: "rahulmaharjan252@gmail.com",
-                    href: "mailto:rahulmaharjan252@gmail.com",
+                    value: profile?.email ?? "",
+                    href: `mailto:${profile?.email ?? ""}`,
                   },
                   {
                     icon: Phone,
                     label: "Phone",
-                    value: "+(977) 9818639012",
-                    href: "tel:+9779818639012",
+                    value: profile?.phone ?? "",
+                    href: `tel:${profile?.phone?.replace(/\D/g, "") ?? ""}`,
                   },
                   {
                     icon: MapPin,
                     label: "Location",
-                    value: "Lalitpur, Nepal",
+                    value: profile?.location ?? "",
                     href: null,
                   },
                 ].map((item, index) => (
