@@ -15,9 +15,12 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
+const hasUsableImage = (src?: string | null): src is string =>
+  !!src && !src.startsWith("/api/");
+
 const ProjectImage = ({ src }: { src?: string | null }) => {
   const [error, setError] = useState(false);
-  const imageSrc = src && !error ? src : "/placeholder.svg";
+  const imageSrc = hasUsableImage(src) && !error ? src : "/placeholder.svg";
 
   return (
     <img
