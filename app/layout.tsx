@@ -3,8 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider"
 import { QueryProvider } from "@/lib/query-provider"
-import { Header } from "@/components/layout/Header"
-import { Footer } from "@/components/layout/Footer"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,9 +33,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <QueryProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <Header />
             {children}
-            <Footer />
           </ThemeProvider>
         </QueryProvider>
       </body>
