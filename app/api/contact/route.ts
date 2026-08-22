@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
+import {
+  sendAutoReply,
+  sendOwnerNotification,
+} from "@/lib/mail";
 
 export const dynamic = "force-dynamic";
 
@@ -42,6 +46,21 @@ export async function POST(request: Request) {
     const message = await prisma.contactMessage.create({
       data: parsed.data,
     });
+
+    const mailConfigured = !!(
+      process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD
+    );
+
+    if (mailConfigured) {
+      try {
+        await Promise.all([
+          sendAutoReply(parsed.data),
+          sendOwnerNotification(parsed.data),
+        ]);
+      } catch (mailError) {
+        console.error("Failed to send notification emails:", mailError);
+      }
+    }
 
     return NextResponse.json(message, { status: 201 });
   } catch (error) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { useProfile } from "@/hooks/use-profile";
@@ -10,7 +10,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import emailjs from "@emailjs/browser";
 
 export const Contact = () => {
   const { ref, isVisible } = useScrollAnimation();
@@ -23,13 +22,6 @@ export const Contact = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const formRef = useRef<HTMLFormElement>(null);
-
-  // Initialize EmailJS if keys are configured
-  useEffect(() => {
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-    if (publicKey) emailjs.init(publicKey);
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,20 +35,6 @@ export const Contact = () => {
       });
 
       if (!response.ok) throw new Error("Failed to save message");
-
-      const emailConfigured = !!process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-      if (emailConfigured) {
-        const emailResult = await emailjs.sendForm(
-          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID",
-          process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID",
-          formRef.current!,
-          process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY",
-        );
-
-        if (emailResult.status !== 200) {
-          throw new Error("Failed to send email");
-        }
-      }
 
       toast({
         title: "Message sent!",
@@ -190,7 +168,6 @@ export const Contact = () => {
                 </CardHeader>
                 <CardContent>
                   <form
-                    ref={formRef}
                     onSubmit={handleSubmit}
                     className="space-y-6"
                   >
