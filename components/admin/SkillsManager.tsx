@@ -9,7 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Pencil, Plus, Trash2 } from "lucide-react";
+import { LuPencil, LuPlus, LuTrash2 } from "react-icons/lu";
 import { ConfirmDialog } from "@/components/admin/ConfirmDialog";
 import {
   Dialog,
@@ -19,7 +19,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Loader2 } from "lucide-react";
+import { LuLoader } from "react-icons/lu";
 
 type RowCategory = {
   id: string;
@@ -107,7 +107,7 @@ const CategoryFormDialog = ({
               Cancel
             </Button>
             <Button type="submit" disabled={submitting}>
-              {submitting && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
+              {submitting && <LuLoader className="h-4 w-4 animate-spin mr-2" />}
               {initial ? "Save Changes" : "Add Category"}
             </Button>
           </DialogFooter>
@@ -186,7 +186,7 @@ const SkillFormDialog = ({
               Cancel
             </Button>
             <Button type="submit" disabled={submitting}>
-              {submitting && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
+              {submitting && <LuLoader className="h-4 w-4 animate-spin mr-2" />}
               {initial ? "Save Changes" : "Add Skill"}
             </Button>
           </DialogFooter>
@@ -281,7 +281,7 @@ export const SkillsManager = () => {
             setCategoryDialog(true);
           }}
         >
-          <Plus className="h-4 w-4 mr-2" />
+          <LuPlus className="h-4 w-4 mr-2" />
           Add Category
         </Button>
       </div>
@@ -304,7 +304,7 @@ export const SkillsManager = () => {
                       setCategoryDialog(true);
                     }}
                   >
-                    <Pencil className="h-4 w-4" />
+                    <LuPencil className="h-4 w-4" />
                   </Button>
                   <Button
                     variant="ghost"
@@ -312,7 +312,7 @@ export const SkillsManager = () => {
                     className="text-destructive hover:text-destructive"
                     onClick={() => setDeletingCategory(category)}
                   >
-                    <Trash2 className="h-4 w-4" />
+                    <LuTrash2 className="h-4 w-4" />
                   </Button>
                 </div>
               </div>
@@ -340,7 +340,7 @@ export const SkillsManager = () => {
                           setSkillDialog(true);
                         }}
                       >
-                        <Pencil className="h-3.5 w-3.5" />
+                        <LuPencil className="h-3.5 w-3.5" />
                       </Button>
                       <Button
                         variant="ghost"
@@ -348,7 +348,7 @@ export const SkillsManager = () => {
                         className="h-7 w-7 text-destructive hover:text-destructive"
                         onClick={() => setDeletingSkill(skill)}
                       >
-                        <Trash2 className="h-3.5 w-3.5" />
+                        <LuTrash2 className="h-3.5 w-3.5" />
                       </Button>
                     </div>
                   </div>
@@ -363,7 +363,7 @@ export const SkillsManager = () => {
                     setSkillDialog(true);
                   }}
                 >
-                  <Plus className="h-4 w-4 mr-2" />
+                  <LuPlus className="h-4 w-4 mr-2" />
                   Add Skill
                 </Button>
               </div>
@@ -388,7 +388,7 @@ export const SkillsManager = () => {
                 onClick={() => setDeletingTech(tech)}
                 aria-label={`Delete ${tech.name}`}
               >
-                <Trash2 className="h-3 w-3" />
+                <LuTrash2 className="h-3 w-3" />
               </button>
             </Badge>
           ))}
@@ -410,7 +410,7 @@ export const SkillsManager = () => {
             className="max-w-xs"
           />
           <Button type="submit" variant="outline">
-            <Plus className="h-4 w-4 mr-2" />
+            <LuPlus className="h-4 w-4 mr-2" />
             Add
           </Button>
         </form>

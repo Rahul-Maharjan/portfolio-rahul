@@ -7,7 +7,7 @@ import { adminApi } from "@/lib/admin-api";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { GripVertical, Pencil, Plus, Trash2 } from "lucide-react";
+import { LuGripVertical, LuPencil, LuPlus, LuTrash2 } from "react-icons/lu";
 import { ConfirmDialog } from "@/components/admin/ConfirmDialog";
 import {
   ExperienceFormDialog,
@@ -128,7 +128,7 @@ export const ExperienceManager = () => {
             setDialogOpen(true);
           }}
         >
-          <Plus className="h-4 w-4 mr-2" />
+          <LuPlus className="h-4 w-4 mr-2" />
           Add Experience
         </Button>
       </div>
@@ -157,7 +157,7 @@ export const ExperienceManager = () => {
               <CardContent className="p-4">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-center gap-3 min-w-0">
-                    <GripVertical className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+                    <LuGripVertical className="h-5 w-5 text-muted-foreground flex-shrink-0" />
                     <div className="min-w-0">
                       <div className="flex flex-wrap items-center gap-2">
                         <h3 className="font-semibold">{experience.title}</h3>
@@ -177,7 +177,7 @@ export const ExperienceManager = () => {
                         setDialogOpen(true);
                       }}
                     >
-                      <Pencil className="h-4 w-4" />
+                      <LuPencil className="h-4 w-4" />
                     </Button>
                     <Button
                       variant="ghost"
@@ -185,7 +185,7 @@ export const ExperienceManager = () => {
                       className="text-destructive hover:text-destructive"
                       onClick={() => setDeleting(experience)}
                     >
-                      <Trash2 className="h-4 w-4" />
+                      <LuTrash2 className="h-4 w-4" />
                     </Button>
                   </div>
                 </div>

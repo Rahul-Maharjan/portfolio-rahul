@@ -6,7 +6,7 @@ import { adminApi, type MessageRecord } from "@/lib/admin-api";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Trash2 } from "lucide-react";
+import { LuMail, LuTrash2 } from "react-icons/lu";
 import { ConfirmDialog } from "@/components/admin/ConfirmDialog";
 
 export const MessagesManager = () => {
@@ -46,7 +46,7 @@ export const MessagesManager = () => {
   if (messages.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
-        <Mail className="h-10 w-10 text-muted-foreground mb-4" />
+        <LuMail className="h-10 w-10 text-muted-foreground mb-4" />
         <p className="text-lg font-medium">No messages yet</p>
         <p className="text-muted-foreground">
           Messages sent through the contact form will appear here.
@@ -115,7 +115,7 @@ export const MessagesManager = () => {
                     className="text-destructive hover:text-destructive"
                     onClick={() => setDeleting(message)}
                   >
-                    <Trash2 className="h-4 w-4" />
+                    <LuTrash2 className="h-4 w-4" />
                   </Button>
                 </div>
               </div>

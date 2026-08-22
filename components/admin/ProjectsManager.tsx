@@ -7,7 +7,7 @@ import { adminApi } from "@/lib/admin-api";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Pencil, Plus, Trash2, Star } from "lucide-react";
+import { LuPencil, LuPlus, LuTrash2, LuStar } from "react-icons/lu";
 import { ConfirmDialog } from "@/components/admin/ConfirmDialog";
 import {
   ProjectFormDialog,
@@ -87,7 +87,7 @@ export const ProjectsManager = () => {
             setDialogOpen(true);
           }}
         >
-          <Plus className="h-4 w-4 mr-2" />
+          <LuPlus className="h-4 w-4 mr-2" />
           Add Project
         </Button>
       </div>
@@ -101,7 +101,7 @@ export const ProjectsManager = () => {
                   <div className="flex items-center gap-2">
                     <h3 className="font-semibold truncate">{project.title}</h3>
                     {project.featured && (
-                      <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                      <LuStar className="h-4 w-4 text-yellow-500 fill-yellow-500" />
                     )}
                   </div>
                   <Badge variant="secondary" className="mt-1">
@@ -117,7 +117,7 @@ export const ProjectsManager = () => {
                       setDialogOpen(true);
                     }}
                   >
-                    <Pencil className="h-4 w-4" />
+                    <LuPencil className="h-4 w-4" />
                   </Button>
                   <Button
                     variant="ghost"
@@ -125,7 +125,7 @@ export const ProjectsManager = () => {
                     className="text-destructive hover:text-destructive"
                     onClick={() => setDeleting(project as RowProject)}
                   >
-                    <Trash2 className="h-4 w-4" />
+                    <LuTrash2 className="h-4 w-4" />
                   </Button>
                 </div>
               </div>

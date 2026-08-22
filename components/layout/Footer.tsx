@@ -1,8 +1,11 @@
 'use client'
 
-import { Mail, Heart } from "lucide-react"
+import { LuMail, LuHeart } from "react-icons/lu";
+import { FaGithub, FaLinkedin } from "react-icons/fa6";
+import { useProfile } from "@/hooks/use-profile";
 
 export const Footer = () => {
+  const { data: profile } = useProfile();
   const currentYear = new Date().getFullYear()
 
   return (
@@ -51,23 +54,26 @@ export const Footer = () => {
                 href="https://github.com/Rahul-Maharjan"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="GitHub"
                 className="p-2 rounded-lg bg-background hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-110"
               >
-                <Mail className="h-5 w-5" />
+                <FaGithub className="h-5 w-5" />
               </a>
               <a
                 href="https://www.linkedin.com/in/rahul-maharjan-a57256207/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="LinkedIn"
                 className="p-2 rounded-lg bg-background hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-110"
               >
-                <Mail className="h-5 w-5" />
+                <FaLinkedin className="h-5 w-5" />
               </a>
               <a
-                href="mailto:john@example.com"
+                href={`mailto:${profile?.email ?? ""}`}
+                aria-label="Email"
                 className="p-2 rounded-lg bg-background hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-110"
               >
-                <Mail className="h-5 w-5" />
+                <LuMail className="h-5 w-5" />
               </a>
             </div>
             <p className="text-sm text-muted-foreground">
@@ -80,10 +86,11 @@ export const Footer = () => {
           <p className="text-muted-foreground text-sm">
             © {currentYear} Rahul Maharjan. All rights reserved.
           </p>
-          <div className="flex items-center space-x-1 text-muted-foreground text-sm mt-4 md:mt-0">
-            <span>Made with</span>
-            <span>using React & Tailwind CSS</span>
-          </div>
+            <div className="flex items-center space-x-1 text-muted-foreground text-sm mt-4 md:mt-0">
+              <span>Made with</span>
+              <LuHeart className="h-4 w-4 text-red-500" />
+              <span>using React & Tailwind CSS</span>
+            </div>
         </div>
       </div>
     </footer>

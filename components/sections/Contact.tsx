@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { LuMail, LuPhone, LuMapPin, LuSend } from "react-icons/lu";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { useProfile } from "@/hooks/use-profile";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -105,19 +105,19 @@ export const Contact = () => {
               <div className="space-y-6">
                 {[
                   {
-                    icon: Mail,
+                    icon: LuMail,
                     label: "Email",
                     value: profile?.email ?? "",
                     href: `mailto:${profile?.email ?? ""}`,
                   },
                   {
-                    icon: Phone,
+                    icon: LuPhone,
                     label: "Phone",
                     value: profile?.phone ?? "",
                     href: `tel:${profile?.phone?.replace(/\D/g, "") ?? ""}`,
                   },
                   {
-                    icon: MapPin,
+                    icon: LuMapPin,
                     label: "Location",
                     value: profile?.location ?? "",
                     href: null,
@@ -164,7 +164,7 @@ export const Contact = () => {
                 }`}
               >
                 <CardHeader>
-                  <CardTitle className="text-2xl">Send a Message</CardTitle>
+                  <CardTitle className="text-2xl">LuSend a Message</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <form
@@ -238,8 +238,8 @@ export const Contact = () => {
                         </div>
                       ) : (
                         <div className="flex items-center space-x-2">
-                          <Send className="h-4 w-4" />
-                          <span>Send Message</span>
+                          <LuSend className="h-4 w-4" />
+                          <span> Send Message</span>
                         </div>
                       )}
                     </Button>

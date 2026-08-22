@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { LuMenu } from "react-icons/lu";
+import { LuX } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 
@@ -11,7 +12,7 @@ const navItems = [
   { href: "#projects", label: "Projects" },
   { href: "#skills", label: "Skills" },
   { href: "#contact", label: "Contact" },
-  { href: "/resume.pdf", label: "Resume", external: true },
+  // { href: "/resume.pdf", label: "Resume", external: true },
 ];
 
 export const Header = () => {
@@ -85,15 +86,15 @@ export const Header = () => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
-                <X className="h-5 w-5" />
+                <LuX className="h-5 w-5" />
               ) : (
-                <Menu className="h-5 w-5" />
+                <LuMenu className="h-5 w-5" />
               )}
             </Button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile LuMenu */}
         {isMobileMenuOpen && (
           <div className="md:hidden bg-background/95 rounded-lg backdrop-blur-md border-t border-border">
             <nav className="flex flex-col py-4">

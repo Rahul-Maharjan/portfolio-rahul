@@ -21,7 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Loader2 } from "lucide-react";
+import { LuLoader } from "react-icons/lu";
 
 export type ProjectFormValues = {
   title: string;
@@ -191,7 +191,7 @@ export const ProjectFormDialog = ({
               Cancel
             </Button>
             <Button type="submit" disabled={submitting}>
-              {submitting && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
+              {submitting && <LuLoader className="h-4 w-4 animate-spin mr-2" />}
               {initial ? "Save Changes" : "Add Project"}
             </Button>
           </DialogFooter>

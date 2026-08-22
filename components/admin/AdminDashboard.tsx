@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { LogOut, Settings } from "lucide-react";
+import { LuLogOut, LuSettings } from "react-icons/lu";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { ProjectsManager } from "@/components/admin/ProjectsManager";
@@ -24,7 +24,7 @@ export const AdminDashboard = ({ email }: { email: string }) => {
       <header className="border-b border-border bg-card/50 backdrop-blur sticky top-0 z-10">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Settings className="h-5 w-5 text-primary" />
+            <LuSettings className="h-5 w-5 text-primary" />
             <span className="font-bold text-lg">Admin</span>
             <span className="text-sm text-muted-foreground hidden sm:inline">
               {email}
@@ -40,7 +40,7 @@ export const AdminDashboard = ({ email }: { email: string }) => {
               onClick={handleLogout}
               className="text-destructive hover:text-destructive"
             >
-              <LogOut className="h-4 w-4 mr-2" />
+              <LuLogOut className="h-4 w-4 mr-2" />
               Logout
             </Button>
           </div>

@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
-import { Loader2, Save } from "lucide-react";
+import { LuLoader, LuSave } from "react-icons/lu";
 
 const ProfileForm = ({
   initial,
@@ -105,11 +105,11 @@ const ProfileForm = ({
           }}
         >
           {updateMutation.isPending ? (
-            <Loader2 className="h-4 w-4 animate-spin mr-2" />
+            <LuLoader className="h-4 w-4 animate-spin mr-2" />
           ) : (
-            <Save className="h-4 w-4 mr-2" />
+            <LuSave className="h-4 w-4 mr-2" />
           )}
-          Save Changes
+          LuSave Changes
         </Button>
         {updateMutation.isError && (
           <p className="text-sm text-destructive bg-destructive/10 rounded-md px-3 py-2">

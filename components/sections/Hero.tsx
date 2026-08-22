@@ -1,6 +1,7 @@
 'use client'
 
-import { ArrowDown,ArrowDown as Github,ArrowDown as Linkedin, Mail, Download } from "lucide-react"
+import { LuArrowDown, LuMail, LuDownload } from "react-icons/lu";
+import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { Button } from "@/components/ui/button"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import { useProfile } from "@/hooks/use-profile"
@@ -86,7 +87,7 @@ export const Hero = () => {
                 asChild
               >
                 <a href={profile.cvUrl} target="_blank" rel="noopener noreferrer">
-                  <Download className="h-4 w-4 mr-2" />
+                  <LuDownload className="h-4 w-4 mr-2" />
                   Download CV
                 </a>
               </Button>
@@ -100,7 +101,7 @@ export const Hero = () => {
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors duration-200 hover:scale-110 transform"
             >
-              <Github className="h-6 w-6" />
+              <FaGithub className="h-6 w-6" />
             </a>
             <a 
               href={profile?.linkedinUrl ?? ""}
@@ -108,20 +109,20 @@ export const Hero = () => {
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors duration-200 hover:scale-110 transform"
             >
-              <Linkedin className="h-6 w-6" />
+              <FaLinkedin className="h-6 w-6" />
             </a>
             <a 
               href={`mailto:${profile?.email ?? ""}`}
               className="text-muted-foreground hover:text-primary transition-colors duration-200 hover:scale-110 transform"
             >
-              <Mail className="h-6 w-6" />
+              <LuMail className="h-6 w-6" />
             </a>
           </div>
         </div>
       </div>
 
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-float">
-        <ArrowDown 
+        <LuArrowDown 
           className="h-6 w-6 text-muted-foreground cursor-pointer hover:text-primary transition-colors duration-200"
           onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
         />

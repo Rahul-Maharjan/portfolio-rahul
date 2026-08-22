@@ -1,7 +1,8 @@
-'use client'
+"use client";
 
 import { useState } from "react";
-import { ExternalLink,ArrowDown as Github, Code2, Palette } from "lucide-react";
+import { LuExternalLink, LuCodeXml, LuPalette } from "react-icons/lu";
+import { FaGithub } from "react-icons/fa6";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { useProjects } from "@/hooks/use-projects";
 import {
@@ -45,7 +46,11 @@ export const Projects = () => {
   );
 
   return (
-    <section id="projects" ref={ref} className="py-20 bg-background max-w-7xl mx-auto">
+    <section
+      id="projects"
+      ref={ref}
+      className="py-20 bg-background max-w-7xl mx-auto"
+    >
       <div className="container mx-auto px-4">
         <div
           className={`transition-all duration-1000 ${
@@ -67,10 +72,10 @@ export const Projects = () => {
           <Tabs defaultValue="development" className="w-full">
             <TabsList className="mx-auto mb-8 flex justify-center w-fit">
               <TabsTrigger value="development">
-                <Code2 className="mr-2 h-5 w-5" /> Development
+                <LuCodeXml className="mr-2 h-5 w-5" /> Development
               </TabsTrigger>
               <TabsTrigger value="design">
-                <Palette className="mr-2 h-5 w-5" /> Design
+                <LuPalette className="mr-2 h-5 w-5" /> Design
               </TabsTrigger>
             </TabsList>
             <TabsContent value="development">
@@ -93,7 +98,7 @@ export const Projects = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            <Github className="h-4 w-4 mr-2" />
+                            <FaGithub className="h-4 w-4 mr-2" />
                             Code
                           </a>
                         </Button>
@@ -103,7 +108,7 @@ export const Projects = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            <ExternalLink className="h-4 w-4 mr-2" />
+                            <LuExternalLink className="h-4 w-4 mr-2" />
                             Demo
                           </a>
                         </Button>
@@ -148,7 +153,7 @@ export const Projects = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            <Palette className="mr-2 h-5 w-5" />
+                            <LuPalette className="mr-2 h-5 w-5" />
                             Design
                           </a>
                         </Button>
@@ -158,7 +163,7 @@ export const Projects = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            <ExternalLink className="h-4 w-4 mr-2" />
+                            <LuExternalLink className="h-4 w-4 mr-2" />
                             View
                           </a>
                         </Button>
