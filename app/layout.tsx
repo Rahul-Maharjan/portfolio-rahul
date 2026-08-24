@@ -14,10 +14,65 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+
 export const metadata: Metadata = {
-  title: "Rahul's Portfolio",
+  title: {
+    default: "Rahul Maharjan | Frontend Developer & UI/UX Designer",
+    template: "%s | Rahul Maharjan",
+  },
+
   description:
-    "Rahul Maharjan | Frontend Developer & UI/UX Designer in Nepal. Explore web development projects, UI/UX designs, React applications, and creative digital experiences.",
+    "Rahul Maharjan is a Frontend Developer and UI/UX Designer from Nepal specializing in React, JavaScript, Tailwind CSS, responsive web development, and modern user experiences.",
+
+  keywords: [
+    "Rahul Maharjan",
+    "Frontend Developer Nepal",
+    "UI/UX Designer Nepal",
+    "React Developer",
+    "JavaScript Developer",
+    "Next.js Developer",
+    "Tailwind CSS",
+    "Web Developer Nepal",
+    "UI UX Designer",
+    "Frontend Developer Portfolio",
+  ],
+
+  authors: [
+    {
+      name: "Rahul Maharjan",
+    },
+  ],
+
+  creator: "Rahul Maharjan",
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
+  openGraph: {
+    type: "website",
+    title: "Rahul Maharjan | Frontend Developer & UI/UX Designer",
+    description:
+      "Explore Rahul Maharjan's portfolio featuring modern web development projects, React applications, UI/UX designs, and creative digital experiences.",
+    siteName: "Rahul Maharjan Portfolio",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Rahul Maharjan Portfolio",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Rahul Maharjan | Frontend Developer & UI/UX Designer",
+    description:
+      "Frontend Developer and UI/UX Designer specializing in React, Next.js, JavaScript, Tailwind CSS, and modern web experiences.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function RootLayout({
